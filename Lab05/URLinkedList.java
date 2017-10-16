@@ -23,19 +23,17 @@ public class URLinkedList<E> implements URList<E>, Iterable<E> {
     @Override
     public boolean add(E e) {
         if(head == null){
-            head.setElement(e);
-            head.setNext(null);
-            head.setPrev(null);
+            head = new URLink<E>(e, null,null);
             size++;
         }
         else{
-            URLink<E> current = head.next();
+            URLink<E> current = head;
+
             while(current.next()!=null){
                 current = current.next();
             }
-            current.next().setElement(e);
-            current.next().setNext(null);
-            current.next().setPrev(current);
+            current.setNext(new URLink<E>(e, current,null));
+
             size++;
         }
         return true;
@@ -84,13 +82,16 @@ public class URLinkedList<E> implements URList<E>, Iterable<E> {
     @Override
     public boolean contains(Object o) {
         boolean a=false;
+        if(head.element().equals(o)){
+            return true;
+        }
         URLink<E> current = head.next();
-        while(current!=o){
+        while(!current.element().equals(o)){
             current = current.next();
-            if(current == null){
+            if(current.equals(null)){
                 break;
             }
-            if(current==o){
+            if(current.element().equals(o)){
                 a=true;
                 break;
             }
@@ -122,8 +123,11 @@ public class URLinkedList<E> implements URList<E>, Iterable<E> {
 
     @Override
     public E get(int index) {
+        if(index==0){
+            return head.element();
+        }
         URLink<E> current = head.next();
-        for(int i=0;i<index;i++){
+        for(int i=1;i<index;i++){
             current = current.next();
         }
         return current.element();
@@ -154,10 +158,10 @@ public class URLinkedList<E> implements URList<E>, Iterable<E> {
     @Override
     public boolean isEmpty() {
         if(size==0){
-            return false;
+            return true;
         }
         else{
-            return true;
+            return false;
         }
     }
 
@@ -272,5 +276,36 @@ public class URLinkedList<E> implements URList<E>, Iterable<E> {
         else{
             return null;
         }
+    }
+    void addFirst(E e){
+        URLink<E> newHead = new URLink<E>(e, null, head);
+        head = newHead;
+    }
+
+    void addLast(E e){
+        add(e);
+    }
+
+    E peekFirst(){
+        return head.element();
+    }
+
+    E peekLast(){
+        return get(size);
+    }
+
+    E pollFirst(){
+        head.next().setPrev(null);
+        head = head.next();
+        return head.element();
+    }
+
+    E pollLast(){
+        URLink<E> current = head;
+        for(int i=0;i<size-1;i++){
+            current = current.next();
+        }
+        current.prev().setNext(null);
+        return current.element();
     }
 }
