@@ -7,15 +7,19 @@ Run "URCalculator.java".
 
 This is a calculator that takes users inputs of a equation and return the result, or a specific command to store or clear the values of variables.
 
+WARNING: PLEASE DON'T TYPE ANY SPACE IN BETWEEN YOUR INPUT OR IT WILL CAUSE ERROR
+
 The calculator supports six kinds of operations:
 1. +
 2. -
 3. *
 4. /
 5. ()
+6. []
+7. {}
 6. =
 
-By using "+", "-", "*", "/" or "()" to numbers, you will get the result of the equation if your input is well formed in mathematical expression.
+By using "+", "-", "*", "/", "()", "[]" or "{}" to numbers, you will get the result of the equation if your input is well formed in mathematical expression.
 
 You can also use variables to do the operation. Use "=" to assign the value of a specific variable. For example, if the user types "a=4" and the value of "a" will then be 4 so that "a+3" will return 7. You can store any numbers of variables you want.
 
