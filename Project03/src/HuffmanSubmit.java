@@ -185,8 +185,8 @@ public class HuffmanSubmit implements Huffman {
 
    public static void main(String[] args) throws Exception{
       Huffman  huffman = new HuffmanSubmit();
-		huffman.encode("/home/oddguan/IdeaProjects/csc172/Project03/src/ur.jpg", "/home/oddguan/IdeaProjects/csc172/Project03/src/ur.enc", "/home/oddguan/IdeaProjects/csc172/Project03/src/freq.txt");
-		huffman.decode("/home/oddguan/IdeaProjects/csc172/Project03/src/ur.enc", "/home/oddguan/IdeaProjects/csc172/Project03/src/ur_dec.jpg", "/home/oddguan/IdeaProjects/csc172/Project03/src/freq.txt");
+		huffman.encode("ur.jpg", "ur.enc", "freq.txt");
+		huffman.decode("ur.enc", "ur_dec.jpg", "freq.txt");
 		// After decoding, both ur.jpg and ur_dec.jpg should be the same. 
 		// On linux and mac, you can use `diff' command to check if they are the same.
    }
